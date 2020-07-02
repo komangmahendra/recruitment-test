@@ -231,6 +231,8 @@ export default {
         mobileNumber,
         firstName,
         lastName,
+        gender,
+        dateOfBirth,
       };
 
       const errorMessage = validateFormRegister(data);
@@ -248,8 +250,12 @@ export default {
             }
           })
           .catch((error) => {
-            const errorMessage = error.response.data.message;
-            this.errorMessage = errorMessage;
+            if (error.response) {
+              const errorMessage = error.response.data.message;
+              this.errorMessage = errorMessage;
+            } else {
+              this.errorMessage = "Uknown error. Please try again later.";
+            }
           });
       }
 
