@@ -75,7 +75,7 @@ describe("validate form register", () => {
     expect(result).toBe("Please enter valid first name");
   });
 
-  test("first name not filled", () => {
+  test("test email not filled", () => {
     const data = {
       email: "mail@mail.com",
       mobileNumber: "082247368506",
