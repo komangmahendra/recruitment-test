@@ -5,7 +5,11 @@
       <div class="header">
         <span class="header title">Registration</span>
         <div class="header error-box">
-          <ErrorTooltip :content="errorMessage" v-if="errorMessage" />
+          <ErrorTooltip
+            :content="errorMessage"
+            v-if="errorMessage"
+            data-testid="error-tooltip"
+          />
         </div>
       </div>
       <form class="form-registration" @submit="onClickRegister">
@@ -17,6 +21,7 @@
             required
             :disabled="isLoading"
             type="tel"
+            data-testid="mobile-phone-field"
           />
         </div>
         <div class="section">
@@ -26,6 +31,7 @@
             v-model="firstName"
             required
             :disabled="isLoading"
+            data-testid="first-name-field"
           />
         </div>
         <div class="section">
@@ -35,6 +41,7 @@
             v-model="lastName"
             required
             :disabled="isLoading"
+            data-testid="last-name-field"
           />
         </div>
         <div class="section">
@@ -82,11 +89,17 @@
             required
             type="email"
             :disabled="isLoading"
+            data-testid="email-field"
           />
         </div>
         <div class="section">
           <!-- prevent onClick props undefined, so send empty function -->
-          <Button title="Register" :onClick="() => {}" :disabled="isLoading" />
+          <Button
+            title="Register"
+            :onClick="() => {}"
+            :disabled="isLoading"
+            data-testid="register-button"
+          />
         </div>
       </form>
     </div>
@@ -218,9 +231,8 @@ export default {
         mobileNumber,
         firstName,
         lastName,
-        dateOfBirth,
-        gender,
       };
+
       const errorMessage = validateFormRegister(data);
       this.errorMessage = errorMessage;
 
@@ -276,6 +288,8 @@ export default {
   background-color: #fff;
   opacity: 0.5;
   pointer-events: none;
+
+  z-index: 1;
 }
 
 .date-of-birth-container {
