@@ -8,6 +8,7 @@
       :checked="checked"
       :disabled="disabled"
       @change="onSelectedGender"
+      data-testid="radio-button"
     />
     <span class="checkmark"></span>
   </label>

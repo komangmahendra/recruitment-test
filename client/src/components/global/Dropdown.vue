@@ -1,7 +1,12 @@
 <template>
   <select @change="onChange" class="dropdown-select" :disabled="disabled">
     <option disabled selected hidden>{{ placeholder }}</option>
-    <option v-for="option in options" :key="option.label" :value="option.value">
+    <option
+      v-for="option in options"
+      :key="option.label"
+      :value="option.value"
+      :data-testid="option.label"
+    >
       {{ option.label }}
     </option>
   </select>
