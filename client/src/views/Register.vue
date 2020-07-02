@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper" data-testid="register-wrapper">
     <div class="container">
-      <div class="foreground" v-if="isLoading"></div>
+      <div class="foreground" v-if="isLoading || isSuccessRegistered"></div>
       <div class="header">
         <span class="header title">Registration</span>
         <div class="header error-box">
@@ -19,7 +19,7 @@
             placeholder="Enter mobile phone number"
             v-model="mobileNumber"
             required
-            :disabled="isLoading"
+            :disabled="isLoading || isSuccessRegistered"
             type="tel"
             data-testid="mobile-phone-field"
           />
@@ -30,7 +30,7 @@
             placeholder="First Name"
             v-model="firstName"
             required
-            :disabled="isLoading"
+            :disabled="isLoading || isSuccessRegistered"
             data-testid="first-name-field"
           />
         </div>
@@ -40,7 +40,7 @@
             placeholder="Last Name"
             v-model="lastName"
             required
-            :disabled="isLoading"
+            :disabled="isLoading || isSuccessRegistered"
             data-testid="last-name-field"
           />
         </div>
@@ -51,19 +51,19 @@
               placeholder="Month"
               :options="getMonthOptions"
               :onChange="handleSelectMonthBirthDate"
-              :disabled="isLoading"
+              :disabled="isLoading || isSuccessRegistered"
             />
             <Dropdown
               placeholder="Date"
               :options="getDateOptions"
               :onChange="handleSelectDatehBirthDate"
-              :disabled="isLoading"
+              :disabled="isLoading || isSuccessRegistered"
             />
             <Dropdown
               placeholder="Year"
               :options="getYearOptions"
               :onChange="handleSelectYearBirthDate"
-              :disabled="isLoading"
+              :disabled="isLoading || isSuccessRegistered"
             />
           </div>
         </div>
@@ -72,13 +72,13 @@
             label="Male"
             :onClick="onSelectGender"
             :checked="gender === 'male'"
-            :disabled="isLoading"
+            :disabled="isLoading || isSuccessRegistered"
           />
           <RadioButton
             label="Female"
             :onClick="onSelectGender"
             :checked="gender === 'female'"
-            :disabled="isLoading"
+            :disabled="isLoading || isSuccessRegistered"
           />
         </div>
         <div class="section">
@@ -88,7 +88,7 @@
             v-model="email"
             required
             type="email"
-            :disabled="isLoading"
+            :disabled="isLoading || isSuccessRegistered"
             data-testid="email-field"
           />
         </div>
@@ -97,7 +97,7 @@
           <Button
             title="Register"
             :onClick="() => {}"
-            :disabled="isLoading"
+            :disabled="isLoading || isSuccessRegistered"
             data-testid="register-button"
           />
         </div>
@@ -273,6 +273,8 @@ export default {
   display: flex;
   flex-direction: column;
   width: 500px;
+
+  position: relative;
 }
 
 .container:not(:first-child) {
